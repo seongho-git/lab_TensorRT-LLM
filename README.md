@@ -1,10 +1,15 @@
 # Lab_TensorRT-LLM
 script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA)
+
 using huggingface model convert version
 
+references
 TensorRT-LLM Github : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)
+
 Original Llama      : [Llama & 2](https://github.com/meta-llama/llama)
+
                       [Llama 3  ](https://github.com/meta-llama/llama3)
+
 Original Gemma      : [Gemma    ](https://github.com/google-deepmind/gemma)
 
 ## Quick Start
@@ -25,14 +30,18 @@ apt-get update && apt-get -y install openmpi-bin libopenmpi-dev git git-lfs wget
 pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com
 pip3 install tensorrt_llm -U --extra-index-url https://pypi.nvidia.com
 
-# Check installation
-python3 -c "import tensorrt_llm"
-
 git lfs install && git clone https://github.com/NVIDIA/TensorRT-LLM.git 
 cd TensorRT-LLM/examples/gemma && git clone https://github.com/seongho-git/Lab_TensorRT-LLM
 pip3 install -r requirements.txt
 
+# Check installation
+python3 -c "import torch; print(torch.__version__)" && \
+python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"  && \
+python3 -c "import mpmath; print(mpmath.__version__)"  && \
+python3 -c "import jax; print(jax.__version__)"
+
 # use scripts
+# copy and paste command from *_script.py
 
 # if needed
 pip install -U "huggingface_hub[cli]"
@@ -41,5 +50,6 @@ pip install -U "huggingface_hub[cli]"
 git config --global user.email [USER_EMAIL] && git config --global user.name [USER_NAME]
 huggingface-cli logout
 # put your username and write access token
-git lfs install && git lfs clone https://huggingface.co/google/gemma-1.1-2b-it
+git lfs install && git clone https://huggingface.co/google/gemma-2b
+git lfs install && git clone https://huggingface.co/meta-llama/Meta-Llama-3-8B
 ```

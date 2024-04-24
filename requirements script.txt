@@ -1,4 +1,4 @@
-# original requirements.txt
+# original requirements.txt // 24.04.05 version
 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 --extra-index-url https://pypi.nvidia.com
 # WAR the new posting of "nvidia-cudnn-cu12~=9.0".

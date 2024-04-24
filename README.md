@@ -41,5 +41,5 @@ pip install -U "huggingface_hub[cli]"
 git config --global user.email [USER_EMAIL] && git config --global user.name [USER_NAME]
 huggingface-cli logout
 # put your username and write access token
-git lfs install && git clone https://huggingface.co/google/gemma-1.1-2b-it
+git lfs install && git lfs clone https://huggingface.co/google/gemma-1.1-2b-it
 ```

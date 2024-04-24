@@ -1,2 +1,42 @@
 # Lab_TensorRT-LLM
-script for Llama 3 and Gemma
+script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA)
+using huggingface model convert version
+
+TensorRT-LLM Github : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)
+Original Llama      : [Llama & 2](https://github.com/meta-llama/llama)
+                      [Llama 3  ](https://github.com/meta-llama/llama3)
+Original Gemma      : [Gemma    ](https://github.com/google-deepmind/gemma)
+
+## Quick Start
+Download TensorRT-LLM
+```bash
+# Obtain and start the basic docker image environment (optional).
+docker run --gpus all -it --privileged --ipc host --name CONTAINER_NAME -v /workspace nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+# Install dependencies, TensorRT-LLM requires Python 3.10
+apt-get update && apt-get -y install python3.10 python3-pip openmpi-bin libopenmpi-dev git git-lfs vi wget
+
+# Install the latest preview version (corresponding to the main branch) of TensorRT-LLM.
+# If you want to install the stable version (corresponding to the release branch), please
+# remove the `--pre` option.
+pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com
+pip3 install tensorrt_llm -U --extra-index-url https://pypi.nvidia.com
+
+# Check installation
+python3 -c "import tensorrt_llm"
+
+git lfs install
+git clone https://github.com/NVIDIA/TensorRT-LLM.git
+cd TensorRT-LLM/examples/gemma
+git clone https://github.com/seongho-git/Lab_TensorRT-LLM
+pip3 install -r requirements.txt
+
+# use scripts
+
+# download model from huggingface
+git config --global user.email USER_EMAIL && git config --global user.name USER_NAME
+huggingface-cli logout
+# put your username and write access token
+git lfs install && git lfs clone https://huggingface.co/google/gemma-2b-it
+git lfs clone https://huggingface.co/google/gemma-7b-it 
+```

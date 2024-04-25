@@ -4,11 +4,10 @@ script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA)
 using huggingface model convert version
 
 references
+
 TensorRT-LLM Github : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM)
 
-Original Llama      : [Llama & 2](https://github.com/meta-llama/llama)
-
-                      [Llama 3  ](https://github.com/meta-llama/llama3)
+Original Llama      : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3)
 
 Original Gemma      : [Gemma    ](https://github.com/google-deepmind/gemma)
 

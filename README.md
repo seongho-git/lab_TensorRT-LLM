@@ -29,8 +29,8 @@ apt-get update && apt-get -y install openmpi-bin libopenmpi-dev git git-lfs wget
 pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com
 pip3 install tensorrt_llm -U --extra-index-url https://pypi.nvidia.com
 
-git lfs install && git clone https://github.com/NVIDIA/TensorRT-LLM.git 
-cd TensorRT-LLM/examples/gemma && git clone https://github.com/seongho-git/Lab_TensorRT-LLM
+git lfs install && git clone https://github.com/NVIDIA/TensorRT-LLM.git && \
+cd TensorRT-LLM/examples/gemma && git clone https://github.com/seongho-git/Lab_TensorRT-LLM && \
 pip3 install -r requirements.txt
 
 # Check installation

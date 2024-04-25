@@ -45,10 +45,10 @@ python3 -c "import jax; print(jax.__version__)"
 # if needed
 pip install -U "huggingface_hub[cli]"
 
-# download model from huggingface
+# download model from huggingface (optional)
 git config --global user.email [USER_EMAIL] && git config --global user.name [USER_NAME]
 huggingface-cli logout
 # put your username and write access token
-git lfs install && git clone https://huggingface.co/google/gemma-2b
-git lfs install && git clone https://huggingface.co/meta-llama/Meta-Llama-3-8B
+git lfs install && git lfs clone https://huggingface.co/google/gemma-2b
+git lfs install && git lfs clone https://huggingface.co/meta-llama/Meta-Llama-3-8B
 ```

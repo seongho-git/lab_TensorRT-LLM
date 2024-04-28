@@ -12,17 +12,18 @@ import subprocess
 
 # sweep parameter
 # --batch_size 128 --max_input_len 512 --output_len 2048
-max_ite = 4 # if hf : 1, trt :1
+max_ite = 1 # if hf : 1, trt :1
 list_batch_size = [1, 4, 16, 64, 256]
-list_max_input_len = [256]
-max_input_len = 256
-list_output_len = [2, 16, , 1024]
+batch_size = 1
+list_max_input_len = [1, 8, 64, 512, 4096, 32768]
+# max_input_len = 512
+list_output_len = [1, 8, 64, 512, 4096, 32768]
 
 # iteration script
 # --test_trt_llm --test_hf
 # change 3 metrics
 for output_len in list_output_len:
-    for batch_size in list_batch_size:
+    for max_input_len in list_max_input_len:
         ex_name = f"ite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
         base_command = f"nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true \
                         --stats true -w true -o ./NSYS/{ex_name}.nsys-rep \

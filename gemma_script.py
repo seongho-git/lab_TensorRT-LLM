@@ -4,7 +4,8 @@ mkdir -p ./check/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b-context-disable/bf16 && \
     mkdir -p ./NSYS && \
-    mkdir -p ./NCU
+    mkdir -p ./NCU && \
+    mkdir -p ./TXT
 """
 
 # under SM80, bf is not working
@@ -22,8 +23,8 @@ trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 1 \
-             --max_input_len 384 \
-             --max_output_len 2 \
+             --max_input_len 32768 \
+             --max_output_len 32768 \
              --lookup_plugin bfloat16 \
              --output_dir ./trt-engine/hf/2b/bf16
 """
@@ -33,8 +34,8 @@ trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 1 \
-             --max_input_len 384 \
-             --max_output_len 2 \
+             --max_input_len 32768 \
+             --max_output_len 32768 \
              --context_fmha disable \
              --output_dir ./trt-engine/hf/2b-context-disable/bf16
 """
@@ -45,8 +46,8 @@ python3 ../summarize.py --test_trt_llm \
                         --data_type bf16 \
                         --engine_dir ./trt-engine/hf/2b/bf16 \
                         --batch_size 1 \
-                        --max_input_length 384 \
-                        --output_len 2 \
+                        --max_input_length 32768 \
+                        --output_len 32768 \
                         --max_ite 1 && \
                             
 nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/gemmaite1ba1in384o2.nsys-rep \
@@ -55,7 +56,7 @@ nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -
                         --data_type bf16 \
                         --engine_dir ./trt-engine/hf/2b/bf16 \
                         --batch_size 1 \
-                        --max_input_length 384 \
-                        --output_len 2 \
+                        --max_input_length 32768 \
+                        --output_len 32768 \
                         --max_ite 1
 """

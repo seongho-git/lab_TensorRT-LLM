@@ -50,7 +50,7 @@ python3 ../summarize.py --test_trt_llm \
                         --output_len 32768 \
                         --max_ite 1 && \
                             
-nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/gemmaite1ba1in384o2.nsys-rep \
+nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/gemma.nsys-rep \
                         python3 ../summarize.py --test_trt_llm \
                         --hf_model_dir ./gemma-2b \
                         --data_type bf16 \

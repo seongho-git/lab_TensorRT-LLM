@@ -1,15 +1,12 @@
 # Lab_TensorRT-LLM
-(It is beta version, still making) \
-description : script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version \
-author      : Kim, SeongHo \
-email       : klue980@gmail.com, seongho-kim@yonsei.ac.kr \
-since       : 2024.04.25 \
-update : 2024.04.29
-
-references \
-TensorRT-LLM Github : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
-Original Llama      : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
-Original Gemma      : [Gemma    ](https://github.com/google-deepmind/gemma)
+(It is beta version, still making)
+* update : 2024.04.29
+* script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
+  
+### References
+TensorRT-LLM Github  : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
+Original Llama : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
+Original Gemma : [Gemma    ](https://github.com/google-deepmind/gemma)
 
 ## Prerequisite
 ### Download TensorRT-LLM

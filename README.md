@@ -1,11 +1,12 @@
 # Lab_TensorRT-LLM
+(It is beta version, still making)
 script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA)
 
 using huggingface model convert version
 
 author : Kim, SeongHo
 
-email  : klue980@gmail.com
+email  : klue980@gmail.com, seongho-kim@yonsei.ac.kr
 
 since  : 2024.04.25
 

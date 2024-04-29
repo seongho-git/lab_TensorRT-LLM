@@ -4,7 +4,7 @@ description : script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using hugg
 author      : Kim, SeongHo \
 email       : klue980@gmail.com, seongho-kim@yonsei.ac.kr \
 since       : 2024.04.25 \
-update : 2024.04.29 \
+update : 2024.04.29
 
 references \
 TensorRT-LLM Github : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \

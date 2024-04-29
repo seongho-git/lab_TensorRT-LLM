@@ -46,6 +46,8 @@ for output_len in list_output_len:
         sed_command = f"2>&1 | tee ./TXT/{ex_name}.txt" # | sed -n '/Output/,$p'
         command = f"{base_command} {sed_command}"
         try:
+            subprocess.run("cd ../", shell=True, check=True)
+            subprocess.run("pwd", shell=True, check=True)
             print(build_command)
             subprocess.run(build_command, shell=True, check=True)
             print(command)

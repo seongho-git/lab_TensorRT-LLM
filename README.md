@@ -20,7 +20,7 @@ Original Llama      : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3 
 
 Original Gemma      : [Gemma    ](https://github.com/google-deepmind/gemma)
 
-### Prerequisite
+## Prerequisite
 ### Download TensorRT-LLM
 ```bash
 # Obtain and start the basic docker image environment (optional).
@@ -51,10 +51,8 @@ python3 -c "import jax; print(jax.__version__)"
 ```
 
 ### Download Nsight Systems
-```bash
-# if needed
-Nsight Install https://klue.tistory.com/14
-```
+if needed, Install Nsight Systems
+[Nsight Install](https://klue.tistory.com/14)
 
 ## Download Models
 ```bash

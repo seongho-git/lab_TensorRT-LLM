@@ -1,3 +1,15 @@
+# title       : gemma_run.py
+# description : iteration script with example_chat_completion.py of gemma
+# author      : Kim Seong Ho
+# email       : klue980@gmail.com 
+# since       : 2024.04.25
+# update      : 2024.04.25
+
+# gemma_run.py : iteration script with example_chat_completion.py of gemma
+# use subprocess.run to repeatedly put CLI commands
+
+import subprocess
+
 # setting
 part_hf_convert = f"""
 mkdir -p ./check/hf/2b/bf16 && \

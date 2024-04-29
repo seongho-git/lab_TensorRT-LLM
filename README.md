@@ -39,8 +39,7 @@ python3 -c "import jax; print(jax.__version__)"
 ```
 
 ### Download Nsight Systems
-if needed, Install Nsight Systems
-[Nsight Install](https://klue.tistory.com/14)
+If needed, install Nsight Systems : [Install Link](https://klue.tistory.com/14)
 
 ## Download Models
 ```bash

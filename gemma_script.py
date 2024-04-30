@@ -35,8 +35,8 @@ trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 512 \
-             --max_input_len 64 \
-             --max_output_len 512 \
+             --max_input_len 4096 \
+             --max_output_len 4096 \
              --lookup_plugin bfloat16 \
              --output_dir ./trt-engine/hf/2b/bf16
 """

@@ -11,13 +11,13 @@
 import subprocess
 
 # sweep parameter
-# --batch_size 64 --max_input_len 64 --output_len 512
+# --batch_size 512 --max_input_len 64 --output_len 512
 max_ite = 1 # if hf : 1, trt :1
 list_batch_size = [1, 8, 64] # [1, 8, 64]
 # batch_size = 1
-list_max_input_len = [64] # [1, 8, 64, 512]
+list_max_input_len = [64] # [64]
 # max_input_len = 512
-list_output_len = [16, 256, 1024] # [1, 4, 16, 256, 1024]
+list_output_len = [1, 8, 64, 512, 4096] # [1, 8, 64, 512, 4096]
 
 # iteration script
 # --test_trt_llm --test_hf
@@ -45,7 +45,6 @@ for batch_size in list_batch_size:
                             --output_len {output_len} \
                             --max_ite {max_ite}"
             sed_command = f"2>&1 | tee ../TXT/{ex_name}.txt" # | sed -n '/Output/,$p'
-            pre_command = f"{build_command} {sed_command}"
             command = f"{base_command} {sed_command}"
             try:
                 print(build_command)

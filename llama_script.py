@@ -23,11 +23,9 @@ mkdir -p ./check/hf/3-8b/bf16 && \
 # under SM80, bf is not working
 part_hf_convert = f"""
 python3 ./convert_checkpoint.py \
-    --ckpt-type hf \
-    --model-dir ./Meta-Llama-3-8B \
+    --model_dir ./Meta-Llama-3-8B \
     --dtype bfloat16 \
-    --world-size 1 \
-    --output-model-dir ./check/hf/3-8b/bf16
+    --output_dir ./check/hf/3-8b/bf16
 """
 
 part_build = f"""

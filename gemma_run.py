@@ -11,13 +11,13 @@
 import subprocess
 
 # sweep parameter
-# --batch_size 512 --max_input_len 64 --output_len 512
+# --batch_size 64 --max_input_len 64 --output_len 512
 max_ite = 1 # if hf : 1, trt :1
-list_batch_size = [8] # [1, 16]
+list_batch_size = [1, 8] # [1, 8]
 # batch_size = 1
-list_max_input_len = [4096] # [1, 4, 16, 256, 1024]
+list_max_input_len = [1, 8, 64, 512] # [1, 8, 64, 512]
 # max_input_len = 512
-list_output_len = [4096] # [1, 4, 16, 256, 1024]
+list_output_len = [1, 8, 64, 512, 4096] # [1, 8, 64, 512, 4096]
 
 # iteration script
 # --test_trt_llm --test_hf

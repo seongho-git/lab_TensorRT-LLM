@@ -17,7 +17,7 @@ list_batch_size = [1, 8, 64] # [1, 8, 64]
 # batch_size = 1
 list_max_input_len = [64] # [1, 8, 64, 512]
 # max_input_len = 512
-list_output_len = [8, 64, 512] # [1, 8, 64, 512, 4096]
+list_output_len = [16, 256, 1024] # [1, 4, 16, 256, 1024]
 
 # iteration script
 # --test_trt_llm --test_hf

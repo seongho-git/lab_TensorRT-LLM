@@ -59,8 +59,8 @@ part_build = f"""
 trtllm-build --checkpoint_dir ./check/hf/3-8b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
-             --max_batch_size 64 \
-             --max_input_len 1024 \
+             --max_batch_size 1 \
+             --max_input_len 256 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
              --output_dir ./trt-engine/hf/3-8b/bf16
@@ -93,7 +93,7 @@ nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -
                         --data_type bf16 \
                         --engine_dir ./trt-engine/hf/3-8b/bf16 \
                         --batch_size 1 \
-                        --max_input_length 32768 \
-                        --output_len 32768 \
-                        --max_ite 1
+                        --max_input_length 1 \
+                        --output_len 256 \
+                        --max_ite 1 2>&1 | tee ./TXT/test.txt
 """

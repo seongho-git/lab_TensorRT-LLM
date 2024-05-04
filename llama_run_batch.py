@@ -12,12 +12,12 @@ import subprocess
 
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
-max_ite = 3 # if hf : 1, trt :1
-list_batch_size = [1] # [1, 8, 64]
+max_ite = 1 # if hf : 1, trt :1
+list_batch_size = [8, 64] # [1, 8, 64]
 # batch_size = 1
-list_max_input_len = [1] # [1, 4, 16, 256]
+list_max_input_len = [64] # [1, 4, 16, 256]
 # max_input_len = 512
-list_output_len = [256] # [1, 4, 16, 256, 1024]
+list_output_len = [8, 64, 512] # [8, 64, 512]
 
 # iteration script
 # --test_trt_llm --test_hf
@@ -52,7 +52,6 @@ for batch_size in list_batch_size:
                 subprocess.run(pre_command, shell=True, check=True)
                 print(command)
                 subprocess.run(command, shell=True, check=True)
-                subprocess.run(command, shell=True, check=True)
-                subprocess.run(command, shell=True, check=True)
+                # subprocess.run(command, shell=True, check=True) # if needed
             except subprocess.CalledProcessError as e:
                 print(f"error : {e}")

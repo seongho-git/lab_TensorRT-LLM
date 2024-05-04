@@ -12,7 +12,7 @@ import subprocess
 
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
-max_ite = 1 # if hf : 1, trt :1
+max_ite = 2 # if hf : 1, trt :1
 list_batch_size = [8, 64] # [1, 8, 64]
 # batch_size = 1
 list_max_input_len = [64] # [1, 4, 16, 256]

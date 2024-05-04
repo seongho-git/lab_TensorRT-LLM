@@ -82,9 +82,9 @@ python3 ../summarize.py --test_trt_llm \
                         --hf_model_dir ./Meta-Llama-3-8B \
                         --data_type bf16 \
                         --engine_dir ./trt-engine/hf/3-8b/bf16 \
-                        --batch_size 64 \
-                        --max_input_length 1024 \
-                        --output_len 1024 \
+                        --batch_size 1 \
+                        --max_input_length 1 \
+                        --output_len 64 \
                         --max_ite 1 && \
                             
 nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/llama.nsys-rep \

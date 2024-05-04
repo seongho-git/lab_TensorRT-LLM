@@ -13,11 +13,11 @@ import subprocess
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
 max_ite = 1 # if hf : 1, trt :1
-list_batch_size = [8] # [1, 8, 64]
+list_batch_size = [1] # [1, 8, 64]
 # batch_size = 1
-list_max_input_len = [256] # [1, 4, 16, 256]
+list_max_input_len = [1] # [1, 4, 16, 256]
 # max_input_len = 512
-list_output_len = [1, 4, 16, 256] # [1, 4, 16, 256, 1024]
+list_output_len = [16, 256, 1024] # [1, 4, 16, 256, 1024]
 
 # iteration script
 # --test_trt_llm --test_hf
@@ -26,20 +26,20 @@ for batch_size in list_batch_size:
     for max_input_len in list_max_input_len: 
         for output_len in list_output_len:
             ex_name = f"ite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
-            build_command = f"trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
+            build_command = f"trtllm-build --checkpoint_dir ../check/hf/3-8b/bf16 \
                             --gemm_plugin bfloat16 \
                             --gpt_attention_plugin bfloat16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
                             --max_output_len {output_len} \
                             --lookup_plugin bfloat16 \
-                            --output_dir ../trt-engine/hf/2b/bf16"
+                            --output_dir ../trt-engine/hf/3-8b/bf16"
             base_command = f"nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true \
                             --stats true -w true -o ../NSYS/{ex_name}.nsys-rep \
                             python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm \
-                            --hf_model_dir ../gemma-2b \
+                            --hf_model_dir ../Meta-Llama-3-8B \
                             --data_type bf16 \
-                            --engine_dir ../trt-engine/hf/2b/bf16 \
+                            --engine_dir ../trt-engine/hf/3-8b/bf16 \
                             --batch_size {batch_size} \
                             --max_input_length {max_input_len} \
                             --output_len {output_len} \

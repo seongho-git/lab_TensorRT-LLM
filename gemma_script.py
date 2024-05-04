@@ -42,7 +42,7 @@ export PATH="$PATH:/opt/nvidia/nsight-systems/2024.1.1/bin"
 source ~/.bashrc
 
 # setting
-part_hf_convert = f"""
+part_hf_setting = f"""
 mkdir -p ./check/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b-context-disable/bf16 && \

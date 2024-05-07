@@ -46,6 +46,9 @@ part_hf_setting = f"""
 mkdir -p ./check/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b-context-disable/bf16 && \
+    mkdir -p ./check/hf/7b/bf16 && \
+    mkdir -p ./trt-engine/hf/7b/bf16 && \
+    mkdir -p ./trt-engine/hf/7b-context-disable/bf16 && \
     mkdir -p ./NSYS && \
     mkdir -p ./NCU && \
     mkdir -p ./TXT
@@ -60,18 +63,35 @@ python3 ./convert_checkpoint.py \
     --world-size 1 \
     --output-model-dir ./check/hf/2b/bf16
 """
+part_hf_convert7 = f"""
+python3 ./convert_checkpoint.py \
+    --ckpt-type hf \
+    --model-dir ./gemma-7b \
+    --dtype bfloat16 \
+    --world-size 1 \
+    --output-model-dir ./check/hf/7b/bf16
+"""
 
 part_build = f"""
 trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
-             --max_batch_size 512 \
-             --max_input_len 4096 \
-             --max_output_len 4096 \
+             --max_batch_size 8 \
+             --max_input_len 64 \
+             --max_output_len 1024 \
              --lookup_plugin bfloat16 \
              --output_dir ./trt-engine/hf/2b/bf16
 """
-
+part_build7 = f"""
+trtllm-build --checkpoint_dir ./check/hf/7b/bf16 \
+             --gemm_plugin bfloat16 \
+             --gpt_attention_plugin bfloat16 \
+             --max_batch_size 8 \
+             --max_input_len 64 \
+             --max_output_len 1024 \
+             --lookup_plugin bfloat16 \
+             --output_dir ./trt-engine/hf/7b/bf16
+"""
 part_unbuild = f"""
 trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
@@ -85,12 +105,12 @@ trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
 
 part_summarize = f"""
 python3 ../summarize.py --test_trt_llm \
-                        --hf_model_dir ./gemma-2b \
+                        --hf_model_dir ./gemma-7b \
                         --data_type bf16 \
-                        --engine_dir ./trt-engine/hf/2b/bf16 \
-                        --batch_size 512 \
+                        --engine_dir ./trt-engine/hf/7b/bf16 \
+                        --batch_size 8 \
                         --max_input_length 64 \
-                        --output_len 512 \
+                        --output_len 1024 \
                         --max_ite 1 && \
                             
 nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/gemma.nsys-rep \
@@ -102,6 +122,12 @@ nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -
                         --max_input_length 32768 \
                         --output_len 32768 \
                         --max_ite 1
+"""
+
+part_nsight = f"""
+ncu --set full --target-processes all -f \
+-o ./NCU/gemma.ncu-rep \
+ --kernel-name Kernel --launch-skip 7181 --launch-count 1 "python" ../summarize.py --test_trt_llm --max_ite 1 --hf_model_dir ./llama2/7b-chat-hf --data_type fp16 --engine_dir ./llama2/7b-chat-hf/trt_ckpt/fp16/1-gpu/ --max_input_len 256 --output_len 1024 --batch_size 16
 """
 
 

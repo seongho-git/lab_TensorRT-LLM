@@ -12,10 +12,10 @@ import subprocess
 
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
-max_ite = 1 # if hf : 1, trt :1
-list_batch_size = [8] # [1, 8, 64]
+max_ite = 2 # if hf : 1, trt :1
+list_batch_size = [8] # [1, 8]
 # batch_size = 1
-list_max_input_len = [1, 4, 16, 64, 256] # [1, 4, 16, 64, 256]
+list_max_input_len = [16] # [1, 4, 16, 64, 256]
 # max_input_len = 512
 list_output_len = [64] # [1, 4, 16, 64, 256, 1024]
 
@@ -25,7 +25,7 @@ list_output_len = [64] # [1, 4, 16, 64, 256, 1024]
 for batch_size in list_batch_size:
     for max_input_len in list_max_input_len: 
         for output_len in list_output_len:
-            ex_name = f"ite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
+            ex_name = f"gemma2bite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
             build_command = f"trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
                             --gemm_plugin bfloat16 \
                             --gpt_attention_plugin bfloat16 \

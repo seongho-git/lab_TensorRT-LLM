@@ -42,6 +42,8 @@ part_hf_setting = f"""
 mkdir -p ./check/hf/3-8b/bf16 && \
     mkdir -p ./trt-engine/hf/3-8b/bf16 && \
     mkdir -p ./trt-engine/hf/3-8b-context-disable/bf16 && \
+    mkdir -p ./check/hf/2b/bf16 && \
+    mkdir -p ./trt-engine/hf/2b/bf16 && \
     mkdir -p ./NSYS && \
     mkdir -p ./NCU && \
     mkdir -p ./TXT
@@ -54,16 +56,33 @@ python3 ./convert_checkpoint.py \
     --dtype bfloat16 \
     --output_dir ./check/hf/3-8b/bf16
 """
+part_hf_convert2 = f"""
+python3 ./convert_checkpoint.py \
+    --model_dir ./Llama-2-7b-hf \
+    --dtype bfloat16 \
+    --output_dir ./check/hf/2b/bf16
+"""
 
 part_build = f"""
 trtllm-build --checkpoint_dir ./check/hf/3-8b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
-             --max_batch_size 1 \
+             --max_batch_size 8 \
              --max_input_len 256 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
              --output_dir ./trt-engine/hf/3-8b/bf16
+"""
+
+part_build2 = f"""
+trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
+             --gemm_plugin bfloat16 \
+             --gpt_attention_plugin bfloat16 \
+             --max_batch_size 8 \
+             --max_input_len 256 \
+             --max_output_len 1024 \
+             --lookup_plugin bfloat16 \
+             --output_dir ./trt-engine/hf/2b/bf16
 """
 
 part_unbuild = f"""
@@ -92,8 +111,19 @@ nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -
                         --hf_model_dir ./Meta-Llama-3-8B \
                         --data_type bf16 \
                         --engine_dir ./trt-engine/hf/3-8b/bf16 \
-                        --batch_size 1 \
-                        --max_input_length 1 \
-                        --output_len 256 \
+                        --batch_size 8 \
+                        --max_input_length 256 \
+                        --output_len 1024 \
+                        --max_ite 1 2>&1 | tee ./TXT/test.txt
+"""
+part_summarize2 = f"""                            
+nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true --stats true -w true -o ./NSYS/llama.nsys-rep \
+                        python3 ../summarize.py --test_trt_llm \
+                        --hf_model_dir ./Llama-2-7b-hf \
+                        --data_type bf16 \
+                        --engine_dir ./trt-engine/hf/2b/bf16 \
+                        --batch_size 8 \
+                        --max_input_length 256 \
+                        --output_len 1024 \
                         --max_ite 1 2>&1 | tee ./TXT/test.txt
 """

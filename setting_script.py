@@ -13,6 +13,7 @@ import subprocess
 initial_setting = """
 apt-get update && apt-get -y install python3.10 python3-pip openmpi-bin libopenmpi-dev git git-lfs wget vim && \
 pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com && \
+cd /workspace && \
 git clone https://github.com/NVIDIA/TensorRT-LLM.git && \
 cd /workspace/TensorRT-LLM/examples/gemma && \
 pip3 install -r requirements.txt && \

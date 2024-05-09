@@ -13,11 +13,11 @@ import subprocess
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
 max_ite = 2 # if hf : 1, trt :1
-list_batch_size = [1] # [1, 8]
+list_batch_size = [64] # [1, 8, 64]
 # batch_size = 1
-list_max_input_len = [16] # [1, 4, 16, 64, 256]
+list_max_input_len = [64] # [64]
 # max_input_len = 512
-list_output_len = [1024] # [1, 4, 16, 64, 256, 1024]
+list_output_len = [512] # [8, 64, 512]
 
 # iteration script
 # --test_trt_llm --test_hf
@@ -29,7 +29,7 @@ for batch_size in list_batch_size:
                             --gpt_attention_plugin bfloat16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
-                            --max_output_len 2048 \
+                            --max_output_len 1024 \
                             --lookup_plugin bfloat16 \
                             --output_dir ../trt-engine/hf/2b/bf16"
         try:

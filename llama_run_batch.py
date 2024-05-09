@@ -24,16 +24,21 @@ list_output_len = [8, 64, 512] # [8, 64, 512]
 # change 3 metrics
 for batch_size in list_batch_size:
     for max_input_len in list_max_input_len: 
-        for output_len in list_output_len:
-            ex_name = f"ite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
-            build_command = f"trtllm-build --checkpoint_dir ../check/hf/3-8b/bf16 \
+        build_command = f"trtllm-build --checkpoint_dir ../check/hf/3-8b/bf16 \
                             --gemm_plugin bfloat16 \
                             --gpt_attention_plugin bfloat16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
-                            --max_output_len {output_len} \
+                            --max_output_len 2048 \
                             --lookup_plugin bfloat16 \
                             --output_dir ../trt-engine/hf/3-8b/bf16"
+                try:
+            print(build_command)
+            subprocess.run(build_command, shell=True, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"error : {e}")
+        for output_len in list_output_len:
+            ex_name = f"ite{max_ite}ba{batch_size}in{max_input_len}out{output_len}"
             base_command = f"nsys profile --wait all -t cuda,nvtx,cudnn,cublas -f true \
                             --stats true -w true -o ../NSYS/{ex_name}.nsys-rep \
                             python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm \

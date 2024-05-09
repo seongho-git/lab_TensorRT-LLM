@@ -22,7 +22,7 @@ python3 -c "import mpmath; print(mpmath.__version__)"  && \
 python3 -c "import jax; print(jax.__version__)"  && \
 git clone https://github.com/seongho-git/Lab-TensorRT-LLM.git && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/gemma/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/gemma/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """
@@ -37,7 +37,7 @@ python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"  && \
 python3 -c "import mpmath; print(mpmath.__version__)"  && \
 python3 -c "import jax; print(jax.__version__)"  && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/gemma/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/gemma/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """
@@ -50,7 +50,7 @@ python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"  && \
 python3 -c "import mpmath; print(mpmath.__version__)"  && \
 python3 -c "import jax; print(jax.__version__)"  && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/gemma/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/gemma/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """

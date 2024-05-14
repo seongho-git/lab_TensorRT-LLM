@@ -81,50 +81,50 @@ python3 ./convert_checkpoint.py \
     --output-model-dir ./check/hf/2b/bf16
 """
 part_hf_convert7 = f"""
-python3 ./convert_checkpoint.py \
+python3 ../convert_checkpoint.py \
     --ckpt-type hf \
     --model-dir ./gemma-7b \
     --dtype bfloat16 \
     --world-size 1 \
-    --output-model-dir ./check/hf/7b/bf16
+    --output-model-dir ../check/hf/7b/bf16
 """
 
 part_build = f"""
-trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 8 \
              --max_input_len 64 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
-             --output_dir ./trt-engine/hf/2b/bf16
+             --output_dir ../trt-engine/hf/2b/bf16
 """
 part_build7 = f"""
-trtllm-build --checkpoint_dir ./check/hf/7b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/7b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 8 \
              --max_input_len 64 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
-             --output_dir ./trt-engine/hf/7b/bf16
+             --output_dir ../trt-engine/hf/7b/bf16
 """
 part_unbuild = f"""
-trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 1 \
              --max_input_len 32768 \
              --max_output_len 32768 \
              --context_fmha disable \
-             --output_dir ./trt-engine/hf/2b-context-disable/bf16
+             --output_dir ../trt-engine/hf/2b-context-disable/bf16
 """
 
 part_summarize = f"""
 python3 ../summarize.py --test_trt_llm \
-                        --hf_model_dir ./gemma-7b \
+                        --hf_model_dir ../gemma-7b \
                         --data_type bf16 \
-                        --engine_dir ./trt-engine/hf/7b/bf16 \
+                        --engine_dir ../trt-engine/hf/7b/bf16 \
                         --batch_size 8 \
                         --max_input_length 64 \
                         --output_len 1024 \

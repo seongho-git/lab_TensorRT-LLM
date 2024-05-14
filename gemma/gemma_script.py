@@ -22,7 +22,7 @@ python3 -c "import mpmath; print(mpmath.__version__)"  && \
 python3 -c "import jax; print(jax.__version__)"  && \
 git clone https://github.com/seongho-git/Lab-TensorRT-LLM.git && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/gemma/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/gemma/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """
@@ -37,7 +37,7 @@ python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"  && \
 python3 -c "import mpmath; print(mpmath.__version__)"  && \
 python3 -c "import jax; print(jax.__version__)"  && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/gemma/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/gemma/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """
@@ -60,15 +60,15 @@ source ~/.bashrc
 
 # setting
 part_hf_setting = f"""
-mkdir -p ./check/hf/2b/bf16 && \
-    mkdir -p ./trt-engine/hf/2b/bf16 && \
-    mkdir -p ./trt-engine/hf/2b-context-disable/bf16 && \
-    mkdir -p ./check/hf/7b/bf16 && \
-    mkdir -p ./trt-engine/hf/7b/bf16 && \
-    mkdir -p ./trt-engine/hf/7b-context-disable/bf16 && \
-    mkdir -p ./NSYS && \
-    mkdir -p ./NCU && \
-    mkdir -p ./TXT
+mkdir -p ../check/hf/2b/bf16 && \
+    mkdir -p ../trt-engine/hf/2b/bf16 && \
+    mkdir -p ../trt-engine/hf/2b-context-disable/bf16 && \
+    mkdir -p ../check/hf/7b/bf16 && \
+    mkdir -p ../trt-engine/hf/7b/bf16 && \
+    mkdir -p ../trt-engine/hf/7b-context-disable/bf16 && \
+    mkdir -p ../NSYS && \
+    mkdir -p ../NCU && \
+    mkdir -p ../TXT
 """
 
 # under SM80, bf is not working
@@ -81,50 +81,50 @@ python3 ./convert_checkpoint.py \
     --output-model-dir ./check/hf/2b/bf16
 """
 part_hf_convert7 = f"""
-python3 ./convert_checkpoint.py \
+python3 ../convert_checkpoint.py \
     --ckpt-type hf \
     --model-dir ./gemma-7b \
     --dtype bfloat16 \
     --world-size 1 \
-    --output-model-dir ./check/hf/7b/bf16
+    --output-model-dir ../check/hf/7b/bf16
 """
 
 part_build = f"""
-trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 8 \
              --max_input_len 64 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
-             --output_dir ./trt-engine/hf/2b/bf16
+             --output_dir ../trt-engine/hf/2b/bf16
 """
 part_build7 = f"""
-trtllm-build --checkpoint_dir ./check/hf/7b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/7b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 8 \
              --max_input_len 64 \
              --max_output_len 1024 \
              --lookup_plugin bfloat16 \
-             --output_dir ./trt-engine/hf/7b/bf16
+             --output_dir ../trt-engine/hf/7b/bf16
 """
 part_unbuild = f"""
-trtllm-build --checkpoint_dir ./check/hf/2b/bf16 \
+trtllm-build --checkpoint_dir ../check/hf/2b/bf16 \
              --gemm_plugin bfloat16 \
              --gpt_attention_plugin bfloat16 \
              --max_batch_size 1 \
              --max_input_len 32768 \
              --max_output_len 32768 \
              --context_fmha disable \
-             --output_dir ./trt-engine/hf/2b-context-disable/bf16
+             --output_dir ../trt-engine/hf/2b-context-disable/bf16
 """
 
 part_summarize = f"""
 python3 ../summarize.py --test_trt_llm \
-                        --hf_model_dir ./gemma-7b \
+                        --hf_model_dir ../gemma-7b \
                         --data_type bf16 \
-                        --engine_dir ./trt-engine/hf/7b/bf16 \
+                        --engine_dir ../trt-engine/hf/7b/bf16 \
                         --batch_size 8 \
                         --max_input_length 64 \
                         --output_len 1024 \

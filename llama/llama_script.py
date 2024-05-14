@@ -45,6 +45,8 @@ mkdir -p ./check/hf/3-8b/bf16 && \
     mkdir -p ./trt-engine/hf/3-8b-context-disable/bf16 && \
     mkdir -p ./check/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b/bf16 && \
+    mkdir -p ./check/hf/2b/fp16 && \
+    mkdir -p ./trt-engine/hf/2b/fp16 && \
     mkdir -p ./NSYS && \
     mkdir -p ./NCU && \
     mkdir -p ./TXT

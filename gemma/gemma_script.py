@@ -60,15 +60,15 @@ source ~/.bashrc
 
 # setting
 part_hf_setting = f"""
-mkdir -p ./check/hf/2b/bf16 && \
-    mkdir -p ./trt-engine/hf/2b/bf16 && \
-    mkdir -p ./trt-engine/hf/2b-context-disable/bf16 && \
-    mkdir -p ./check/hf/7b/bf16 && \
-    mkdir -p ./trt-engine/hf/7b/bf16 && \
-    mkdir -p ./trt-engine/hf/7b-context-disable/bf16 && \
-    mkdir -p ./NSYS && \
-    mkdir -p ./NCU && \
-    mkdir -p ./TXT
+mkdir -p ../check/hf/2b/bf16 && \
+    mkdir -p ../trt-engine/hf/2b/bf16 && \
+    mkdir -p ../trt-engine/hf/2b-context-disable/bf16 && \
+    mkdir -p ../check/hf/7b/bf16 && \
+    mkdir -p ../trt-engine/hf/7b/bf16 && \
+    mkdir -p ../trt-engine/hf/7b-context-disable/bf16 && \
+    mkdir -p ../NSYS && \
+    mkdir -p ../NCU && \
+    mkdir -p ../TXT
 """
 
 # under SM80, bf is not working

@@ -14,7 +14,10 @@ if __name__ == "__main__":
     monitor_gpu_and_save(output_file)
 
 '''
-nvidia-smi --query-gpu=utilization.gpu,memory.used,name,pstate \
+nvidia-smi --query-gpu=name,compute_cap,memory.total \
+    --format=csv \
+    | tee ./nvTXT/gemma2ite10ba1in64out32_status.csv && \
+nvidia-smi --query-gpu=timestamp,utilization.gpu,memory.used \
     --format=csv -lms 1 \
-    | tee ./nvTXT/llama2ite10ba64in64out32_status.csv
+    | tee -a ./nvTXT/gemma2ite10ba1in64out32_status.csv
 '''

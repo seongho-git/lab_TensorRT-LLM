@@ -58,4 +58,22 @@ for batch_size in list_batch_size:
             except subprocess.CalledProcessError as e:
                 print(f"error : {e}")
                 
-# python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm                             --hf_model_dir /workspace/TensorRT-LLM/examples/gemma/gemma-2b                             --data_type bf16                             --engine_dir /workspace/TensorRT-LLM/examples/gemma/trt-engine/hf/2b/bf16                             --batch_size 8                             --max_input_length 64                             --output_len 512                             --max_ite 2 2>&1 | tee /workspace/TensorRT-LLM/examples/gemma/TXT/gemma2bite2ba8in64out512.txt
+"""
+python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/llama/Llama-2-7b-hf \
+--engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/2b/bf16 \
+--batch_size 64 --max_input_length 64 --output_len 2 --max_ite 10 \
+2>&1 | tee /workspace/TensorRT-LLM/examples/llama/TXT/llama2ite10ba64in64out2.txt
+"""
+"""
+python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/llama/Llama-2-7b-hf \
+--engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/2b/bf16 \
+--max_input_length 64 --max_ite 10 --batch_size 1 --output_len 2
+"""
+"""
+python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/llama/Meta-Llama-3-8B \
+--engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16 \
+--max_input_length 64 --max_ite 10 --batch_size 1 --output_len 2
+"""

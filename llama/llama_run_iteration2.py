@@ -73,8 +73,7 @@ python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type
 """
 """
 python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
---hf_model_dir /workspace/TensorRT-LLM/examples/llama/Llama-2-7b-hf \
---engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/2b/bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/llama/Meta-Llama-3-8B \
+--engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16 \
 --max_input_length 64 --max_ite 10 --batch_size 1 --output_len 2
-
 """

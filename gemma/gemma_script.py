@@ -81,12 +81,12 @@ python3 ./convert_checkpoint.py \
     --output-model-dir ./check/hf/2b/bf16
 """
 part_hf_convert7 = f"""
-python3 ../convert_checkpoint.py \
+python3 ./convert_checkpoint.py \
     --ckpt-type hf \
     --model-dir ./gemma-7b \
     --dtype bfloat16 \
     --world-size 1 \
-    --output-model-dir ../check/hf/7b/bf16
+    --output-model-dir ./check/hf/7b/bf16
 """
 
 part_build = f"""

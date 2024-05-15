@@ -16,8 +16,8 @@ if __name__ == "__main__":
 '''
 nvidia-smi --query-gpu=name,compute_cap,memory.total \
     --format=csv \
-    | tee ./nvTXT/gemma2ite10ba1in64out32_status.csv && \
+    | tee ./CSV/gemma2bite10ba64in64out32_status.csv && \
 nvidia-smi --query-gpu=timestamp,utilization.gpu,memory.used \
     --format=csv -lms 1 \
-    | tee -a ./nvTXT/gemma2ite10ba1in64out32_status.csv
+    | tee -a ./CSV/gemma2bite10ba64in64out32_status.csv
 '''

@@ -15,5 +15,5 @@ def monitor_gpu_and_save(interval, output_file):
 
 if __name__ == "__main__":
     interval = 0.001  # observation interval (seconds)
-    output_file = "./nvTXT/gemma2ite10ba64in64out2_status.txt"  # file name
+    output_file = "./nvTXT/gemma2ite10ba64in64out32_status.txt"  # file name
     monitor_gpu_and_save(interval, output_file)

@@ -13,11 +13,11 @@ import subprocess
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
 max_ite = 2 # if hf : 1, trt :1
-list_batch_size = [8] # [1, 8]
+list_batch_size = [64] # [1, 8]
 # batch_size = 1
 list_max_input_len = [64] # [1, 4, 16, 64, 256]
 # max_input_len = 512
-list_output_len = [512] # [1, 4, 16, 64, 256, 1024]
+list_output_len = [32] # [1, 4, 16, 64, 256, 1024]
 
 # iteration script
 # --test_trt_llm --test_hf
@@ -29,7 +29,7 @@ for batch_size in list_batch_size:
                             --gpt_attention_plugin bfloat16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
-                            --max_output_len 1024 \
+                            --max_output_len 256 \
                             --lookup_plugin bfloat16 \
                             --output_dir /workspace/TensorRT-LLM/examples/gemma/trt-engine/hf/2b/bf16"
         try:
@@ -60,20 +60,20 @@ for batch_size in list_batch_size:
                 
 """
 python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
---hf_model_dir /workspace/TensorRT-LLM/examples/llama/Llama-2-7b-hf \
---engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/2b/bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/gemma/gemma-2b \
+--engine_dir /workspace/TensorRT-LLM/examples/gemma/trt-engine/hf/2b/bf16 \
 --batch_size 64 --max_input_length 64 --output_len 2 --max_ite 10 \
-2>&1 | tee /workspace/TensorRT-LLM/examples/llama/TXT/llama2ite10ba64in64out2.txt
+2>&1 | tee /workspace/TensorRT-LLM/examples/gemma/TXT/gemma2bite2ba8in64out32.txt
 """
 """
 python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
---hf_model_dir /workspace/TensorRT-LLM/examples/llama/Llama-2-7b-hf \
---engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/2b/bf16 \
---max_input_length 64 --max_ite 10 --batch_size 1 --output_len 2
+--hf_model_dir /workspace/TensorRT-LLM/examples/gemma/gemma-2b \
+--engine_dir /workspace/TensorRT-LLM/examples/gemma/trt-engine/hf/2b/bf16 \
+--max_ite 10 --max_input_length 64 --batch_size 64 --output_len 32
 """
 """
 python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm --data_type bf16 \
---hf_model_dir /workspace/TensorRT-LLM/examples/llama/Meta-Llama-3-8B \
---engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16 \
+--hf_model_dir /workspace/TensorRT-LLM/examples/gemma/gemma-7b \
+--engine_dir /workspace/TensorRT-LLM/examples/gemma/trt-engine/hf/7b/bf16 \
 --max_input_length 64 --max_ite 10 --batch_size 1 --output_len 2
 """

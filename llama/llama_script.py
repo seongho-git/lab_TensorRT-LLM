@@ -8,9 +8,10 @@
 # llama_run.py : iteration script with example_chat_completion.py of llama
 # use subprocess.run to repeatedly put CLI commands
 
-setting = """
+initial_setting = """
 apt-get update && apt-get -y install python3.10 python3-pip openmpi-bin libopenmpi-dev git git-lfs wget vim && \
-pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com && \
+cd /workspace && pip3 install tensorrt_llm -U --pre --extra-index-url https://pypi.nvidia.com && \
+git clone https://github.com/NVIDIA/TensorRT-LLM.git && \
 cd /workspace/TensorRT-LLM/examples/llama && \
 pip3 install -r requirements.txt && \
 python3 -c "import torch; print(torch.__version__)" && \

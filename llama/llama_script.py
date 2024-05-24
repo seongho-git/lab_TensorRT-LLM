@@ -31,19 +31,25 @@ python3 -c "import torch; print(torch.__version__)" && \
 python3 -c "import tensorrt_llm; print(tensorrt_llm.__version__)"  && \
 python3 -c "import mpmath; print(mpmath.__version__)"  && \
 git config --global user.email klue980@gmail.com && git config --global user.name seongho-git && \
-cd /workspace/TensorRT-LLM/examples/llama/Lab_TensorRT-LLM && \
+cd /workspace/TensorRT-LLM/examples/llama/Lab-TensorRT-LLM && \
 wget https://developer.nvidia.com/downloads/assets/tools/secure/nsight-systems/2024_1/nsightsystems-linux-public-2024.1.1.59-3380207.run && \
 bash nsightsystems-linux-public-2024.1.1.59-3380207.run
 """
 
-export PATH="$PATH:/opt/nvidia/nsight-systems/2024.1.1/bin"
-source ~/.bashrc
+"""
+export PATH="$PATH:/opt/nvidia/nsight-systems/2024.1.1/bin" && \
+source ~/.bashrc && \ 
+nsys
+"""
 
 # setting
 part_hf_setting = f"""
 mkdir -p ./check/hf/3-8b/bf16 && \
     mkdir -p ./trt-engine/hf/3-8b/bf16 && \
     mkdir -p ./trt-engine/hf/3-8b-context-disable/bf16 && \
+    mkdir -p ./check/hf/3-8b/fp16 && \
+    mkdir -p ./trt-engine/hf/3-8b/fp16 && \
+    mkdir -p ./trt-engine/hf/3-8b-context-disable/fp16 && \
     mkdir -p ./check/hf/2b/bf16 && \
     mkdir -p ./trt-engine/hf/2b/bf16 && \
     mkdir -p ./check/hf/2b/fp16 && \

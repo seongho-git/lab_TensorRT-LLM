@@ -24,14 +24,14 @@ list_output_len = [8, 64, 512] # [8, 64, 512]
 # change 3 metrics
 for batch_size in list_batch_size:
     for max_input_len in list_max_input_len: 
-        build_command = f"trtllm-build --checkpoint_dir /workspace/TensorRT-LLM/examples/llama/check/hf/3-8b/bf16 \
-                            --gemm_plugin bfloat16 \
-                            --gpt_attention_plugin bfloat16 \
+        build_command = f"trtllm-build --checkpoint_dir /workspace/TensorRT-LLM/examples/llama/check/hf/3-8b/fp16 \
+                            --gemm_plugin float16 \
+                            --gpt_attention_plugin float16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
                             --max_output_len 1024 \
-                            --lookup_plugin bfloat16 \
-                            --output_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16"
+                            --lookup_plugin float16 \
+                            --output_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/fp16"
         try:
             print(build_command)
             subprocess.run(build_command, shell=True, check=True)
@@ -43,8 +43,8 @@ for batch_size in list_batch_size:
                             --stats true -w true -o /workspace/TensorRT-LLM/examples/llama/NSYS/{ex_name}.nsys-rep \
                             python3 /workspace/TensorRT-LLM/examples/summarize.py --test_trt_llm \
                             --hf_model_dir /workspace/TensorRT-LLM/examples/llama/Meta-Llama-3-8B \
-                            --data_type bf16 \
-                            --engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16 \
+                            --data_type fp16 \
+                            --engine_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/fp16 \
                             --batch_size {batch_size} \
                             --max_input_length {max_input_len} \
                             --output_len {output_len} \

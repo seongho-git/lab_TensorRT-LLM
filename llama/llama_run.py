@@ -23,13 +23,26 @@ list_output_len = [1, 4, 16, 64, 256, 1024] # [1, 4, 16, 64, 256, 1024]
 # --test_trt_llm --test_hf
 # change 3 metrics
 for batch_size in list_batch_size:
+    build_command = f"trtllm-build --checkpoint_dir /workspace/TensorRT-LLM/examples/llama/check/hf/3-8b/bf16 \
+                        --gemm_plugin bfloat16 \
+                        --gpt_attention_plugin bfloat16 \
+                        --max_batch_size {batch_size} \
+                        --max_input_len 256 \
+                        --max_output_len 2048 \
+                        --lookup_plugin bfloat16 \
+                        --output_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16"
+    try:
+        print(build_command)
+        subprocess.run(build_command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"error : {e}")
     for max_input_len in list_max_input_len: 
         build_command = f"trtllm-build --checkpoint_dir /workspace/TensorRT-LLM/examples/llama/check/hf/3-8b/bf16 \
                             --gemm_plugin bfloat16 \
                             --gpt_attention_plugin bfloat16 \
                             --max_batch_size {batch_size} \
                             --max_input_len {max_input_len} \
-                            --max_output_len 2048 \
+                            --max_output_len 1024 \
                             --lookup_plugin bfloat16 \
                             --output_dir /workspace/TensorRT-LLM/examples/llama/trt-engine/hf/3-8b/bf16"
         try:

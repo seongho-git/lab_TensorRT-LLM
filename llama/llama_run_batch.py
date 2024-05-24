@@ -12,8 +12,8 @@ import subprocess
 
 # sweep parameter
 # --batch_size 512 --max_input_len 64 --output_len 512
-max_ite = 2 # if hf : 1, trt :1
-list_batch_size = [1] # [1, 8, 64]
+max_ite = 1 # if hf : 1, trt :1
+list_batch_size = [1, 64] # [1, 8, 64]
 # batch_size = 1
 list_max_input_len = [64] # [1, 4, 16, 256]
 # max_input_len = 512
@@ -54,6 +54,7 @@ for batch_size in list_batch_size:
             command = f"{base_command} {sed_command}"
             try:
                 print(command)
+                subprocess.run(command, shell=True, check=True)
                 subprocess.run(command, shell=True, check=True)
                 # subprocess.run(command, shell=True, check=True) # if needed
             except subprocess.CalledProcessError as e:

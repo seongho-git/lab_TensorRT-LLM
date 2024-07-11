@@ -1,14 +1,20 @@
 # Lab_TensorRT-LLM
-24.06.24 still making
+⚠️ **We don't upload our paper yet. It will be uploaded at Arxiv until August, 2024** \
+Leave your questions to **seongho-kim@yonsei.ac.kr**. I'll reply in a week.
 
 These codes for the paper : [Direction of LLMs improvement based on their operation development](https://github.com/seongho-git/Direction_of_LLMs.git)
-* update : 2024.05.30
-* script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
-  
+* Updates : 2024.06.24
+* Script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
+* Members : Kim SeongHo, Mun JiHyun, Oh JunTaek
+* Affiliation: Department of Electircal and Electronic Engineering at Yonsei University
+* Country: Korea (South)
+* Category: cs.AI
+
 ### References
 TensorRT-LLM Github  : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
-Original Llama : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
-Original Gemma : [Gemma    ](https://github.com/google-deepmind/gemma)
+Original Llama       : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
+Original Gemma       : [Gemma    ](https://github.com/google-deepmind/gemma) \
+Analysis of Llama    : [lab_llama2](https://github.com/seongho-git/lab_llama2)
 
 ## Prerequisite
 ### Download TensorRT-LLM

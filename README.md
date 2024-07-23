@@ -1,5 +1,5 @@
 # Lab_TensorRT-LLM
-⚠️ **We don't upload our paper yet. It will be uploaded at Arxiv until August, 2024** \
+⚠️ **We don't upload our paper yet. It will be uploaded at Arxiv until 2024** \
 Leave your questions to **seongho-kim@yonsei.ac.kr**. I'll reply in a week.
 
 These codes for the paper : [Direction of LLMs improvement based on their operation development](https://github.com/seongho-git/Direction_of_LLMs.git)

@@ -1,14 +1,14 @@
 # Lab_TensorRT-LLM
-⚠️ **We don't upload our paper yet. It will be uploaded at Arxiv until 2024** \
+**Paper URL: [https://doi.org/10.48550/arXiv.2410.11381](https://doi.org/10.48550/arXiv.2410.11381)** \
 Leave your questions to **seongho-kim@yonsei.ac.kr**. I'll reply in a week.
 
 These codes for the paper : [Direction of LLMs improvement based on their operation development](https://github.com/seongho-git/Direction_of_LLMs.git)
-* Updates : 2024.06.24
+* Updates : 2025.01.21
 * Script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
-* Members : Kim SeongHo, Mun JiHyun, Oh JunTaek
+* Members : SeongHo Kim, JiHyun Moon, JunTaek Oh
 * Affiliation: Department of Electircal and Electronic Engineering at Yonsei University
-* Country: Korea (South)
-* Category: cs.AI
+* Country: South Korea
+* Category: cs.LG
 
 ### References
 TensorRT-LLM Github  : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
@@ -47,7 +47,7 @@ python3 -c "import jax; print(jax.__version__)"
 ```
 
 ### Download Nsight Systems
-If needed, install Nsight Systems : [Install Link](https://klue.tistory.com/14)
+If needed, install Nsight Systems : [Install Link](https://klue.tistory.com/15)
 
 ## Download Models
 ```bash

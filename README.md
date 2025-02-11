@@ -2,7 +2,6 @@
 **Paper URL: [https://doi.org/10.48550/arXiv.2410.11381](https://doi.org/10.48550/arXiv.2410.11381)** \
 Leave your questions to **seongho-kim@yonsei.ac.kr**. I'll reply in a week.
 
-These codes for the paper : [Direction of LLMs improvement based on their operation development](https://github.com/seongho-git/Direction_of_LLMs.git)
 * Updates : 2025.01.21
 * Script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
 * Members : SeongHo Kim, JiHyun Moon, JunTaek Oh
@@ -13,8 +12,7 @@ These codes for the paper : [Direction of LLMs improvement based on their operat
 ### References
 TensorRT-LLM Github  : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
 Original Llama       : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
-Original Gemma       : [Gemma    ](https://github.com/google-deepmind/gemma) \
-Analysis of Llama    : [lab_llama2](https://github.com/seongho-git/lab_llama2)
+Original Gemma       : [Gemma    ](https://github.com/google-deepmind/gemma)
 
 ## Prerequisite
 ### Download TensorRT-LLM

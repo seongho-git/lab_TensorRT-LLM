@@ -1,16 +1,31 @@
 # Lab_TensorRT-LLM
-**Paper URL: [https://doi.org/10.48550/arXiv.2410.11381](https://doi.org/10.48550/arXiv.2410.11381)** \
+Experiment scripts for the paper
+**[Survey and Evaluation of Converging Architecture in LLMs Based on Footsteps of Operations](https://doi.org/10.1109/OJCS.2025.3587005)**,
+*IEEE Open Journal of the Computer Society*, vol. 6, pp. 1214-1226, 2025.
 Leave your questions to **seongho-kim@yonsei.ac.kr**. I'll reply in a week.
 
-* Updates : 2025.01.21
-* Script for Llama 3 and Gemma with TensorRT-LLM (NVIDIA) using huggingface model convert version
-* Members : SeongHo Kim, JiHyun Moon, JunTaek Oh
-* Affiliation: Department of Electircal and Electronic Engineering at Yonsei University
+* Updates : 2026.10.23
+* Scripts that build TensorRT-LLM (NVIDIA) engines from Hugging Face checkpoints (Gemma 2B/7B, Llama 2 7B, Llama 3 8B),
+  sweep batch size and input/output length, and profile kernels with Nsight Systems against the Hugging Face baseline
+* Members : Seongho Kim, Jihyun Moon, Juntaek Oh
+* Affiliation: Department of Electrical and Electronic Engineering, Yonsei University
 * Country: South Korea
 * Category: cs.LG
 
+### Citation
+```bibtex
+@ARTICLE{kim2025footsteps,
+  author={Kim, Seongho and Moon, Jihyun and Oh, Juntaek and Choi, Insu and Yang, Joon-Sung},
+  journal={IEEE Open Journal of the Computer Society},
+  title={Survey and Evaluation of Converging Architecture in LLMs Based on Footsteps of Operations},
+  year={2025},
+  volume={6},
+  pages={1214-1226},
+  doi={10.1109/OJCS.2025.3587005}}
+```
+
 ### References
-TensorRT-LLM Github  : [TensoRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
+TensorRT-LLM Github  : [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) \
 Original Llama       : [Llama & 2](https://github.com/meta-llama/llama) [Llama 3  ](https://github.com/meta-llama/llama3) \
 Original Gemma       : [Gemma    ](https://github.com/google-deepmind/gemma)
 
